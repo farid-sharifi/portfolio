@@ -1,0 +1,18 @@
+html{
+    font-style: italic;
+}
+body{
+    background: black;
+}
+h1{
+    color:blue;
+    text-align: center;
+    margin: 0 auto;
+    width: 300px;
+    height: 100px;
+    background: linear-gradient(135deg,rgb(255, 158, 110),#fff);
+}
+p{
+    text-align: center;
+    color: white;
+}
