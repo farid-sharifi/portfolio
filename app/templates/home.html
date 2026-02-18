@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/home.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="box_logo">
+            <div class="logo"></div>
+            <div class="box_name">
+                <h3 class="name">Portfolio</h3>
+            </div>
+        </div>
+        <div class="box_introduce">
+            <h1 class="introduce">Web Developer</h1>
+        </div>
+    </header>
+    <main id="main">
+        <div id="box_menu">
+            <div id="box_line">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <p id="name_mode">light</p>
+            <div id="menu">
+                <div id="screen_mode"></div>
+            </div>
+        </div>
+        <div class="box_profile">
+            <div class="box_picture">
+                <div class="picture"></div>
+            </div>
+            <div class="box_hero_section">
+                <P class="first hero_section">Hi,I'm Farid.</P>
+                <p class="second hero_section">I build simple and clean web projects.</p>
+            </div>
+        </div>
+        <div class="box_buttons">
+            <a href="/projects" class="buttons projects_button">
+                <div class="all_parts part1 left_part1"></div>
+                <p class="labels projects_name">Projects</p>
+                <div class="all_parts part2 left_part2"></div>
+            </a>
+            <a href="/contact" class="buttons contact_button">
+                <div class="all_parts part2 right_part1"></div>
+                <p class="labels contact_name">Contact</p>
+                <div class="all_parts part1 right_part2"></div>
+            </a>
+        </div>
+        <div class="box_motivational">
+            <p class="motivational">:I enjoy building tools and learning new technologies.</p>
+        </div>
+    </main>
+    <footer id="footer">
+        <p id="reserved">© 2025 Farid-All rights reserved.</p>
+        <div id="box_link">
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-telegram"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-youtube"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-github"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+    <script>
+        const box_line = document.getElementById("box_line");
+        const menu = document.getElementById("menu");
+        const name_mode = document.getElementById("name_mode");
+        const screen_mode = document.getElementById("screen_mode");
+        const header = document.getElementById("header");
+        const main = document.getElementById("main");
+        const footer = document.getElementById("footer");
+        const body = document.body;
+        const is_dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const root = document.documentElement.style; 
+
+        function dark_mode(){
+            name_mode.innerText = "dark"
+            root.setProperty("--up-down","translateY(35px)")
+            root.setProperty("--wallpaper","url('/static/images/monitor_dark.png')")
+            root.setProperty("--body-color","#fff")
+            root.setProperty("--menu-background","#fff8")
+            root.setProperty("--screen-mode-background","#0008")
+        }
+        function light_mode(){
+            name_mode.innerText = "light"
+            root.setProperty("--up-down","translateY(0)")
+            root.setProperty("--wallpaper","url('/static/images/monitor_light.png')")
+            root.setProperty("--body-color","#000")
+            root.setProperty("--menu-background","none")
+            root.setProperty("--screen-mode-background","#fff")
+        }
+
+
+        box_line.addEventListener("click", () =>{
+            menu.classList.toggle("open")
+            name_mode.classList.toggle("open")
+        })
+        menu.addEventListener("click",() =>{
+            if (name_mode.innerText === "dark"){
+                light_mode()
+            }
+            else{
+                dark_mode()
+            }
+            const theme = name_mode.innerText
+            sessionStorage.setItem("theme",theme)
+            
+        })
+        if (is_dark){
+            name_mode.innerText = "dark"
+        }
+        const get_theme = sessionStorage.getItem("theme")
+        if (get_theme){
+            if (get_theme === "dark"){
+                dark_mode()
+            }
+            else{
+                light_mode()
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+:root{
+    --hero-section-size:250px;
+    --move-time:3s;
+    --up-down:translateY(0);
+    --menu-background:none;
+    --screen-mode-background:#fff;
+}
+#box_menu{
+    width: 40px;
+    height: auto;
+    position: absolute;
+    right:100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#box_line{
+    height: 35px;
+    width: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+}
+#box_line:hover{
+    background: #fff3;
+}
+.line{
+    height: 5px;
+    margin: 2px;
+    background: #fff8;
+    border-radius: 20px;
+}
+#name_mode{
+    color: white;
+    visibility: hidden;
+}
+#name_mode.open{
+    animation: open 1s ease forwards;
+}
+#menu{
+    box-shadow: 0 0 5px;
+    width: 30px;
+    height: 70px;
+    border-radius: 20px;
+    animation: close 1s ease;
+    visibility: hidden;
+    background: var(--menu-background);
+}
+#menu.open{
+    animation: open 1s ease forwards;
+}
+#screen_mode{
+    box-shadow: 0 0 5px white;
+    height: 28px;
+    width: 26px;
+    border-radius: 20px;
+    margin: 2px auto;
+    background: var(--screen-mode-background);
+    transform: var(--up-down);
+    transition: all 0.3s ease;
+}
+.box_profile{
+    height: 130px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 50px 0 0 60px;
+}
+.box_picture{
+    width: 78px;
+    height: 78px;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 5px;
+    transition: all 0.3s ease;
+}
+.box_picture:hover{
+    transform: scale(1.2);
+}
+.picture{
+    width: 70px;
+    height: 70px;
+    border-radius: 60px;
+    background: url("../images/a_فقط_سایز_تصویر_رو_۱_.png") center/cover;
+}
+.box_hero_section{
+    margin: 20px;
+}
+.hero_section{
+    margin: 5px;
+    white-space: nowrap;
+    width: 0;
+    overflow: hidden;
+    color: white;
+}
+.first{
+    animation: typing1 1s linear forwards;
+}
+.second{
+    animation: typing2 var(--move-time) linear forwards;
+}
+
+
+.box_buttons{
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    height: 250px;
+    margin: 20px 30px 10px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons{
+    text-decoration: none;
+    height: 40px;
+    width: 110px;
+    display: flex;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.buttons:hover{
+    transform: scale(1.2);
+}
+.buttons:active{
+    transform: scale(1);
+}
+.projects_button{
+    border-radius: 0 0 45px 0;
+    left: 5px;
+}
+.contact_button{
+    border-radius: 45px 0 0 0;
+    right: 5px;
+}
+.all_parts{
+    flex-shrink: 0;
+    width: 70px;
+    position: relative;
+    backdrop-filter: blur(20px);
+}
+.part1{
+    background: rgba(255, 255, 255, 0.8);
+    
+}
+.part2{
+    background: rgba(255, 255, 255, 0.2);
+    transform: skew(-45deg);
+    z-index: 1;
+}
+.left_part1{
+    
+ 
+    border-radius: 20px 0 0 20px;
+
+}
+.left_part2{
+ 
+    right: 100px;
+    border-radius: 20px 0 0 20px;
+}
+.right_part1{
+    
+    left: 20px;
+    border-radius: 0 20px 20px 0;
+}
+.right_part2{
+    
+    border-radius: 0 20px 20px 0;
+    right: 80px;
+}
+.labels{
+    position: relative;
+    top: 10px;
+    margin: 0;
+    height: 20px;
+    z-index: 2;
+    text-shadow: 2px 2px 5px;
+    
+}
+.projects_name{
+    right: 50px;
+    color: darkblue;
+}
+.contact_name{
+    right: 30px;
+    color: red;
+}
+.box_motivational{
+    height: 60px;
+    width:350px;
+    margin: 10px 0 0 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing3 6s linear forwards;
+    color: white;
+}
+@keyframes typing1{
+    from {width: 0;}
+    to {width: 100px;}
+}
+@keyframes typing2 {
+    0% {width: 0;}
+    25% {width: 0;}
+    100% {width: var(--hero-section-size);}
+}
+@keyframes typing3 {
+    0% {width: 0;}
+    50%{width: 0;}
+    100%{width: 350;}
+}
+@keyframes open {
+    0% {transform: translateY(-100px);
+        opacity: 0;}
+    100% {transform: translateY(0);
+          opacity: 1;
+          visibility: visible;}
+}
+@keyframes close {
+    0% {transform: translateY(0);
+        opacity: 1;}
+    100% {transform: translateY(-100px);
+          opacity: 0;}
+}
+@media (prefers-color-scheme: dark){
+    :root{
+        --screen-mode-background: #0008;
+        --up-down:translateY(35px);
+        --menu-background:#fff8;
+    }
+}
+@media (max-width:768px){
+    .box_profile{
+        padding: 50px 0 0 30px;
+    }
+    .box_hero_section{
+        margin: 10px;
+    }
+    .hero_section{
+        font-size: 12px;
+    }
+    :root{
+        --hero-section-size:210px;
+        }
+    #box_menu{
+        right: 20px;
+        top: 140px;
+    }
+    .box_motivational{
+        width:300px;
+        margin: 10px 0 0 30px;
+    }
+    .motivational{
+        font-size: 12px;
+    }
+    .buttons:hover{
+        transform: none;
+    }
+    .buttons:active{
+        transform: scale(0.8);
+    }
+}

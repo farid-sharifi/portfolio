@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact</title>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/contact.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div id="success_box">
+        <i class="tick fa-solid fa-check-circle"></i>
+        <p id="success"></p> 
+    </div>
+    <header id="header">
+        <div class="box_logo">
+            <div class="logo"></div>
+            <div class="box_name">
+                <h3 class="name">Portfolio</h3>
+            </div>
+        </div>
+        <div class="box_introduce">
+            <h1 class="introduce">Web Developer</h1>
+        </div>
+    </header>
+    <main id="main">
+        <div class="box_button">
+            <a href="/" id="back_home">Home</a>
+        </div>
+        <p class="text">:Feel free to contact me.I'll get back to you soon.</p>
+        <form id="contact_form">
+            <h3 class="form_title">Contact</h3>
+            <input type="text" name="username" placeholder=" username:" id="username">
+            <input type="email" name="email" placeholder=" email:" id="email">
+            <textarea name="message" placeholder=" message:" id="message"></textarea>
+            <small id="error"></small>
+            <button type="submit" id="send" >Send</button>
+        </form>
+    </main>
+    <footer id="footer">
+        <p id="reserved">© 2025 Farid-All rights reserved.</p>
+        <div id="box_link">
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-telegram"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-youtube"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-github"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+    <div id="loader">
+        <div class="items item1"></div>
+        <div class="items item2"></div>
+        <div class="items item1"></div>
+        <div class="items item2"></div>
+        <div class="items item1"></div>
+    </div>
+    <script>
+        const username = document.getElementById("username");
+        const email = document.getElementById("email");
+        const header = document.getElementById("header");
+        const main = document.getElementById("main");
+        const footer = document.getElementById("footer");
+        const back_home = document.getElementById("back_home");
+        const inputs = document.querySelectorAll("input");
+        const message = document.getElementById("message");
+        const form = document.getElementById("contact_form");
+        const send = document.getElementById("send");
+        const body = document.body;
+        const get_theme = sessionStorage.getItem("theme");
+        const error = document.getElementById("error");
+        const items = [username,email,message]
+        const root = document.documentElement.style;
+        const loader = document.getElementById("loader");
+        const success_box = document.getElementById("success_box");
+        const success = document.getElementById("success");
+
+        if (get_theme){
+            if (get_theme === "dark"){
+                root.setProperty("--wallpaper","url('/static/images/monitor_dark.png')")
+                root.setProperty("--body-color","#fff")
+                root.setProperty("--back-home-background","#fff8")
+                root.setProperty("--back-home-color","#000")
+                root.setProperty("--form-color","#fff")
+                root.setProperty("--inputs-background","none")
+                root.setProperty("--inputs-focus-background","#fff4")
+                root.setProperty("--inputs-focus-shadow","#000")
+            }
+            else{
+                root.setProperty("--wallpaper","url('/static/images/monitor_light.png')")
+                root.setProperty("--body-color","#000")
+                root.setProperty("--back-home-background","#0003")
+                root.setProperty("--back-home-color","#fff")
+                root.setProperty("--form-color","#000")
+                root.setProperty("--inputs-background","#fff8")
+                root.setProperty("--inputs-focus-background","#0004")
+                root.setProperty("--inputs-focus-shadow","#fff")
+            }
+        }
+        form.addEventListener("submit",(e) =>{
+            e.preventDefault()
+            let n = 0
+            items.forEach(item =>{
+                if (item.value !== ""){
+                    n += 1
+                }
+            })
+            if (n === 3){
+                loader.classList.add("play")
+                body.style.overflow = "hidden"
+                error.innerText = ""
+                error.style.background = "transparent"
+                error.style.boxShadow = "none"
+                    const form_data = new FormData(form);
+                    send_contact(form_data)
+            }
+            else{
+                error.innerText = "field is empty!"
+                error.style.color = "white"
+                error.style.background = "#f00"
+                error.style.boxShadow = "0 0 5px"
+            }
+        })
+        async function send_contact(form_data){
+            try{
+                const response = await fetch("/form_contact",{
+                    method:"POST",
+                    body: form_data
+                })
+                const data = await response.json()
+                body.style.overflow = "auto"
+                loader.classList.remove("play")
+                console.log(data)
+                    if (data.message){
+                        success.innerText = data.message
+                        success_box.style.color = "#0f0"
+                        success_box.classList.add("show")
+                        setTimeout(() =>{
+                            success_box.classList.remove("show")
+                        },2000)
+                        form.reset()
+                    }
+                    else{
+                        success.innerText = data.error
+                        success_box.style.color = "#f00"
+                        success_box.classList.add("show")
+                        setTimeout(() =>{
+                            success_box.classList.remove("show")
+                        },2000)
+                    }
+            }
+            catch(error){
+                console.error("error:",error)
+            }
+        }
+    </script>
+</body>
+</html>

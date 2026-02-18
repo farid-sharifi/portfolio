@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>projects</title>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/projects.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="box_logo">
+            <div class="logo"></div>
+            <div class="box_name">
+                <h3 class="name">Portfolio</h3>
+            </div>
+        </div>
+        <div class="box_introduce">
+            <h1 class="introduce">Web Developer</h1>
+        </div>
+    </header>
+    <main id="main">
+        <div class="box_button">
+            <a href="/" id="back_home">Home</a>
+        </div>
+        <div class="box_project">
+            <div class="project">
+                <div class="picture"></div>
+                <div class="box_explain">
+                    <p class="title">title</p>
+                    <p class="explain">this section is to explain the project.</p>
+                </div>
+            </div>
+            <div class="project">
+                <div class="picture"></div>
+                <div class="box_explain">
+                    <p class="title">title</p>
+                    <p class="explain">this section is to explain the project.</p>
+                </div>
+            </div>
+            <div class="project">
+                <div class="picture"></div>
+                <div class="box_explain">
+                    <p class="title">title</p>
+                    <p class="explain">this section is to explain the project.</p>
+                </div>
+            </div>
+            <div class="project">
+                <div class="picture"></div>
+                <div class="box_explain">
+                    <p class="title">title</p>
+                    <p class="explain">this section is to explain the project.</p>
+                </div>
+            </div>
+            <div class="project">
+                <div class="picture"></div>
+                <div class="box_explain">
+                    <p class="title">title</p>
+                    <p class="explain">this section is to explain the project.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer id="footer">
+        <p id="reserved">© 2025 Farid-All rights reserved.</p>
+        <div id="box_link">
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-telegram"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-youtube"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-github"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="icon fa-brands fa-linkedin"></i>
+            </a>
+        </div>
+    </footer>
+    <script>
+        const header = document.getElementById("header");
+        const main = document.getElementById("main");
+        const footer = document.getElementById("footer");
+        const back_home = document.getElementById("back_home");
+        const pictures = document.querySelectorAll(".picture");
+        const body = document.body;
+        const root = document.documentElement.style;
+        const get_theme = sessionStorage.getItem("theme");
+        if (get_theme){
+            if (get_theme === "dark"){
+                root.setProperty("--wallpaper","url('/static/images/monitor_dark.png')")
+                root.setProperty("--body-color","#fff")
+                root.setProperty("--color-picture-shadow","#fff")
+                root.setProperty("--back-home-background","#fff8")
+                root.setProperty("--back-home-color","#000")
+            }
+            else{
+                root.setProperty("--wallpaper","url('/static/images/monitor_light.png')")
+                root.setProperty("--body-color","#000")
+                root.setProperty("--color-picture-shadow","#000")
+                root.setProperty("--back-home-background","#0003")
+                root.setProperty("--back-home-color","#fff")
+            }
+        }
+    </script>
+</body>
+</html>
